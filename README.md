@@ -3,3 +3,6 @@ Public detection-as-code repository: ATT&CK-oriented detection content with port
 Content is published on `main`. Example queries and wizard notes are for lab / adaptation use; validate against your own log sources and field mappings before production.
 
 Some pack content was drafted with AI assistance from public sources (e.g. CISA), then human-reviewed and organized in this repo.
+
+## License
+[MIT](LICENSE) — free to use and adapt with attribution. Public intel (e.g. CISA) remains subject to its own source terms; cite original reports. Provided as-is; validate in your environment before production use.
