@@ -1,14 +1,5 @@
-**Free Threat Hunting & Detection Rules/Queries/Intel**
+Public detection-as-code repository: ATT&CK-oriented detection content with portable Sigma and example QRadar (Rule Wizard / AQL) and Splunk (SPL) implementations. Includes public intel packs (e.g. campaign kits derived from open reporting). This is packaged detection content—not live threat hunting. No client data.
 
-Sigma rules, YARA rules, Splunk SPL Queries, QRadar AQL Queries, and more.
+Content is published on `main`. Example queries and wizard notes are for lab / adaptation use; validate against your own log sources and field mappings before production.
 
-Free forever. No sign-up required.
-
-Use & redistribution of free-tier rules/queries/intel allowed with attribution.
-
-**Questions or Rule Requests?**
-- Open a GitHub Discussion
-- DM me on LinkedIn: linkedin.com/in/enriqueayala
-
-I answer almost everything within 24–48 hours.
-(Do NOT email — it gets buried in recruiter spam.)
+Some pack content was drafted with AI assistance from public sources (e.g. CISA), then human-reviewed and organized in this repo.
