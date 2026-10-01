@@ -29,7 +29,18 @@ Lab framing: logic and naming are **examples** for adaptation. Map fields, paths
 
 ## Building Blocks
 
-### BB-1
+Create these **before** the core rule. Name them so intent is obvious.
+
+### BB-1: `Sysmon Archive via Zip Utilities`
+
+| Field | Value | 
+| --- | --- | 
+| Purpose | Identify Sysmon-related events associated with archiving using Zip utilities. |
+| Rule Type | Building Block |
+| Rule Condition Elements | Log Source Type, QID, Properties/Values |
+| Log Source Types | Microsoft Windows Security Event Log |
+| Uses Reference Sets | No | 
+| Output | Matches archive-like process activity where Zip utilities are used. |
 
 ### BB-2
 
