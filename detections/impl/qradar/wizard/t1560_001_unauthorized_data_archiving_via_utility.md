@@ -18,6 +18,10 @@ Detect automated or bulk archiving activity that may indicate collection/staging
 
 Lab framing: logic and naming are **examples** for adaptation. Map fields, paths, and thresholds to your environment before production use.
 
+## Telemetry notes
+
+In this lab pattern, Sysmon process-create activity is collected via **WinCollect** and appears in QRadar as log source type **Microsoft Windows Security Event Log**, Event ID **1**, QID **7400021**. Other environments may use a dedicated Sysmon DSM/log source type—map LST/QID/properties to local parsing.
+
 ## High-Level Design
 
 | Piece | Role |
