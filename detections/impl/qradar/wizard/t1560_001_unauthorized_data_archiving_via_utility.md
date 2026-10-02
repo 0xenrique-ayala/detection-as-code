@@ -147,3 +147,12 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 | Technique | T1560 Archive Collected Data |
 | Sub-Technique | T1560.001 Archive via Utility |
 | Confidence | Medium |
+
+## False Positive Risks
+
+| Risk | Why | Action|
+|---|---|---|
+| Missing Events | Silent failure. | Health: ensure Sysmon is installed and Event ID 1 is collected. |
+| Admin One-Off Packaging | Looks automated if scripted. | BB tuning for recurring; have user exception process ready. |
+| Legitimate Utility Usage | Recurring trusted activity. | BB tuning; create BB:FalsePositive: building block; apply to core rule using And Not rule test. |
+| Non-Utility Usage Noise | Over-scoped building blocks. | BB tuning. |
