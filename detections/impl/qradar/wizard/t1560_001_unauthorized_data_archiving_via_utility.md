@@ -154,5 +154,5 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 |---|---|---|
 | Missing Events | Silent failure. | Health: ensure Sysmon is installed and Event ID 1 is collected. |
 | Admin One-Off Packaging | Looks automated if scripted. | BB tuning for recurring; have user exception process ready. |
-| Legitimate Utility Usage | Recurring trusted activity. | BB tuning; create BB:FalsePositive: building block; apply to core rule using And Not rule test. |
-| Non-Utility Usage Noise | Over-scoped building blocks. | BB tuning. |
+| Legitimate Utility Usage | Recurring trusted activity. | BB tuning; create BB:FalsePositive: building block; apply to core rule using And Not multi-part rule test. |
+| Non-Utility Usage Noise | Over-scoped building blocks. | BB tuning using multi-part rule test. |
