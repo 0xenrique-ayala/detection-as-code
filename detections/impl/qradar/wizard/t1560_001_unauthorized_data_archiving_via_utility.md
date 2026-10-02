@@ -1,4 +1,4 @@
-# T1560.001 Unauthorized Data Archiving via Utility
+# T1560.001 Unauthorized Data Archiving via Utilities
 
 **Status:** Experimental (lab)
 
@@ -68,7 +68,32 @@ Create these **before** the core rule. Name them so intent is obvious.
 | 1 | And when the events were detected by one ore more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `7400021` |
 | 3 | And when the event matches search filter `Event ID = 1`, `"Image" contains any of powershell.exe or pwsh.exe or cmd.exe` | 
-| 4 | And when the event matches this AQL filter query ``` ("CommandLine" ILIKE '%\Users\Public\%' OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "CommandLine" ILIKE '%Compress-Archive%' AND NOT ("Image" ILIKE 'false-positive.exe' AND "CommandLine" ILIKE '%\folder\subfolder\%') ```| 
+| 4 | And when the event matches this AQL filter query |
+
+**AQL filter (Rule Test 4):**
+
+```AQL
+("CommandLine" ILIKE '%\Users\Public\%' OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "CommandLine" ILIKE '%Compress-Archive%' AND NOT ("Image" ILIKE 'false-positive.exe' AND "CommandLine" ILIKE '%\folder\subfolder\%')
+```
+
+### BB-3: `Sysmon Archive via Tar Utilities`
+
+| Field | Value | 
+| --- | --- | 
+| Purpose | Identify Sysmon-related events associated with archiving using Tar utilities. |
+| Rule Type | Building Block |
+| Rule Test Elements | Log Source Type, QID, Properties/Values |
+| Log Source Types | Microsoft Windows Security Event Log |
+| Uses Reference Sets | No | 
+| Output | Matches archive-like process activity where Tar utilities are used. |
+
+**Example Rule Conditions**
+
+| Rule Test # (Top-Down) | Rule Test |
+| --- | --- |
+| 1 | And when the events were detected by one ore more of these log source types `Microsoft Windows Security Event Log` | 
+| 2 | And when the event QID is one of the following QIDs `7400021` |
+| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7z.dll or 7za.exe or WinRaR.exe or rar.exe or tar.exe or makecab.exe or compact.exe or PowerShell.EXE`, `CommandLine contains any of (space)-p or (space)-hp or (space)-pass or Compress-Archive or (space)-a or (space)-cif or (space)czf or (space)-czf` | 
 
 ## Core Rule
 
