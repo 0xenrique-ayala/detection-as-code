@@ -108,14 +108,14 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 | Purpose | Fire when archive behavior occurs |
 | Rule Type | Event rule |
 | Rule Test Elements | Building Blocks, Properties/Values |
-| Building Blocks Used | BB-1, BB-2, and BB-3 |
+| Building Blocks Used | Any of BB-1, BB-2, BB-3 |
 | Deploy Notes | Baseline first; expect FP tuning |
 
 **Example Rule Conditions**
 
 | Rule Test # (Top-Down) | Rule Test |
 | --- | --- |
-| 1 | And when an event matches any of the following building blocks `BB:Sysmon Archive via PowerShell Cmdlets` or `BB:Sysmon Archive via PowerShell Cmdlets` or `BB:Sysmon Archive via Tar Utilities` | 
+| 1 | And when an event matches any of the following building blocks `BB:Sysmon Archive via Zip Utilities` or `BB:Sysmon Archive via PowerShell Cmdlets` or `BB:Sysmon Archive via Tar Utilities` | 
 | 2 | And Not when the event matches search filter `Username is any of ANONYMOUS LOGON or SYSTEM` |
 
 **Example Rule Response**
