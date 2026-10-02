@@ -22,8 +22,8 @@ Lab framing: logic and naming are **examples** for adaptation. Map fields, paths
 
 | Piece | Role |
 | --- | --- |
-| Building Blocks (3) | Reusable tests that identify archive tooling, sensitive targets, or automation context |
-| Core Rule (1) | Correlates BBs + thresholds + responses when suspicious archive staging is present |
+| Building Blocks (3) | Reusable tests that identify three utility paths under T1560.001. |
+| Core Rule (1) | Correlates BBs and fires when suspicious archive staging is present. |
 
 **Create order:** Building Blocks → Core Rule.
 
@@ -46,9 +46,9 @@ Create these **before** the core rule. Name them so intent is obvious.
 
 | Rule Test # (Top-Down) | Rule Test |
 | --- | --- |
-| 1 | And when the events were detected by one ore more of these log source types `Microsoft Windows Security Event Log` | 
+| 1 | And when the events were detected by one or more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `7400021` |
-| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7z.dll or 7za.exe or WinRaR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-p or (space)-p or (space)-hp or (space)-pass` | 
+| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7z.dll or 7za.exe or WinRAR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-a or (space)-p or (space)-hp or (space)-pass` | 
 
 ### BB-2: `BB:Sysmon Archive via PowerShell Cmdlets`
 
@@ -78,8 +78,6 @@ OR "CommandLine" ILIKE '%\AppData\Local\Temp\%'
 OR "CommandLine" ILIKE '%C:\Windows\Temp\%'
 OR "CommandLine" ILIKE '%\ProgramData\%')
 AND "CommandLine" ILIKE '%Compress-Archive%'
-AND NOT ("Image" ILIKE 'false-positive.exe'
-AND "CommandLine" ILIKE '%\folder\subfolder\%')
 ```
 
 ### BB-3: `BB:Sysmon Archive via Tar Utilities`
