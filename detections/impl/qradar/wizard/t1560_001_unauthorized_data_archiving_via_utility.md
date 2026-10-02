@@ -73,7 +73,13 @@ Create these **before** the core rule. Name them so intent is obvious.
 **AQL filter (Rule Test 4):**
 
 ```AQL
-("CommandLine" ILIKE '%\Users\Public\%' OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "CommandLine" ILIKE '%Compress-Archive%' AND NOT ("Image" ILIKE 'false-positive.exe' AND "CommandLine" ILIKE '%\folder\subfolder\%')
+("CommandLine" ILIKE '%\Users\Public\%'
+OR "CommandLine" ILIKE '%\AppData\Local\Temp\%'
+OR "CommandLine" ILIKE '%C:\Windows\Temp\%'
+OR "CommandLine" ILIKE '%\ProgramData\%')
+AND "CommandLine" ILIKE '%Compress-Archive%'
+AND NOT ("Image" ILIKE 'false-positive.exe'
+AND "CommandLine" ILIKE '%\folder\subfolder\%')
 ```
 
 ### BB-3: `Sysmon Archive via Tar Utilities`
