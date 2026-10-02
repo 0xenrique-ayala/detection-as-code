@@ -155,7 +155,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 | Legitimate Utility Usage | Recurring trusted activity. | BB tuning; create BB:FalsePositive: building block; apply to core rule using And Not multi-part rule test. |
 | Non-Utility Usage Noise | Over-scoped building blocks. | BB tuning using multi-part rule test. |
 
-## Triage (when this fires)
+## Example SOC Incident Response Playbook
 
 **Initial Triage & Verification**
 
