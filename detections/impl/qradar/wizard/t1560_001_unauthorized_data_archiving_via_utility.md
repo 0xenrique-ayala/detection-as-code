@@ -103,7 +103,7 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 
 ## Core Rule
 
-## CR: Unauthorized Data Archiving via Utilities
+## CR: `Unauthorized Data Archiving via Utilities`
 
 | Field | Value |
 |---|---|
