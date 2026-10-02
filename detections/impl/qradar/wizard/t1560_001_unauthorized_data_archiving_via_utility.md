@@ -101,7 +101,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 
 ## Core Rule
 
-## CR: `Unauthorized Data Archiving via Utilities`
+### CR: `Unauthorized Data Archiving via Utilities`
 
 | Field | Value |
 |---|---|
