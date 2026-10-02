@@ -110,7 +110,7 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 | Purpose | Fire when archive behavior occurs |
 | Rule Type | Event rule |
 | Rule Test Elements | Building Blocks, Properties/Values |
-| Building Blocks Used | BB-1 and BB-2 and BB-3 |
+| Building Blocks Used | BB-1, BB-2, and BB-3 |
 | Deploy Notes | Baseline first; expect FP tuning |
 
 **Example Rule Conditions**
