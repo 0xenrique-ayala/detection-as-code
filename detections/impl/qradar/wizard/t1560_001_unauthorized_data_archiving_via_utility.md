@@ -159,8 +159,10 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 
 ## Triage (when this fires)
 
-| Triage Stage | Step | Response | Actions |
-|---|---|---|---|
-| Initial Triage & Verification | 1 | Extract Archival Footprints | Open the active QRadar offense.  Extract the target workstation's `Source IP`, `Username`, `Image`, and the complete `CommandLine` text block. |
-|  | 2 | Evaluate Target Assets | Inspect the full string patch inside the `CommandLine` to identify what data the process is compressing (look for arguments pointing to Documents, Desktop, share drives, or database export folders. |
-|  | 3 | Check for Encryption Signatures | Verify if the command string includes password concealment markers (such as -p, -hp, or .zip encryption functions). If encryption flags are present alongside an unauthorized script, escalate the incident status to a true positive compromise.
+**Initial Triage & Verification**
+
+| Step | Response | Actions |
+|---|---|---|
+| 1 | Extract Archival Footprints | Open the active QRadar offense.  Extract the target workstation's `Source IP`, `Username`, `Image`, and the complete `CommandLine` text block. |
+| 2 | Evaluate Target Assets | Inspect the full string patch inside the `CommandLine` to identify what data the process is compressing (look for arguments pointing to Documents, Desktop, share drives, or database export folders. |
+| 3 | Check for Encryption Signatures | Verify if the command string includes password concealment markers (such as -p, -hp, or .zip encryption functions). If encryption flags are present alongside an unauthorized script, escalate the incident status to a true positive compromise.
