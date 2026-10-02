@@ -103,4 +103,18 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 
 ## Core Rule
 
-## CR: 
+## CR: Unauthorized Data Archiving via Utilities
+
+| Field | Value |
+|---|---|
+| Purpose | Fire when archive behavior occurs |
+| Rule type | Event rule |
+| Severity | 7 |
+| Credibility | 8 | 
+| Relevance | 7 |
+| High-Level Category | Suspicious Activity |
+| Low-Level Category | Suspicious Pattern Detected |
+| ATT&CK Mapping| Tactic: `TA0009 Collection`, Technique: `T1560 Archive Collected Data`, Sub-Technique: `T1560.001 Archive via Utility`, Confidence: `Medium` |
+| Building blocks used | BB-1 AND BB-2 AND BB-3 |
+| Response / actions | Create offense; annotate with process, path, user, host (generic) |
+| Deploy notes | Baseline first; expect FP tuning around backup windows |
