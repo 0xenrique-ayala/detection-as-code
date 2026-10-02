@@ -70,6 +70,8 @@ Create these **before** the core rule. Name them so intent is obvious.
 | 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of powershell.exe or pwsh.exe or cmd.exe` | 
 | 4 | And when the event matches this AQL filter query ''' ("CommandLine" ILIKE '%\Users\Public\%' OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "ParentCommandLine" ILIKE '%Compress-Archive%' ```| 
 
+``` ("CommandLine" ILIKE '%\Users\Public\%' OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "ParentCommandLine" ILIKE '%Compress-Archive%' ```
+
 ## Core Rule
 
 ## CR: 
