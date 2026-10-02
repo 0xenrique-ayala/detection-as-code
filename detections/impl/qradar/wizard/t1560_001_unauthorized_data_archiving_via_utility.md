@@ -31,7 +31,7 @@ Lab framing: logic and naming are **examples** for adaptation. Map fields, paths
 
 Create these **before** the core rule. Name them so intent is obvious.
 
-### BB-1: `Sysmon Archive via Zip Utilities`
+### BB-1: `BB:Sysmon Archive via Zip Utilities`
 
 | Field | Value | 
 | --- | --- | 
@@ -50,7 +50,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | 2 | And when the event QID is one of the following QIDs `7400021` |
 | 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7z.dll or 7za.exe or WinRaR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-p or (space)-p or (space)-hp or (space)-pass` | 
 
-### BB-2: `Sysmon Archive via PowerShell Cmdlets`
+### BB-2: `BB:Sysmon Archive via PowerShell Cmdlets`
 
 | Field | Value | 
 | --- | --- | 
@@ -82,7 +82,7 @@ AND NOT ("Image" ILIKE 'false-positive.exe'
 AND "CommandLine" ILIKE '%\folder\subfolder\%')
 ```
 
-### BB-3: `Sysmon Archive via Tar Utilities`
+### BB-3: `BB:Sysmon Archive via Tar Utilities`
 
 | Field | Value | 
 | --- | --- | 
@@ -109,10 +109,16 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 |---|---|
 | Purpose | Fire when archive behavior occurs |
 | Rule Type | Event rule |
+| Rule Test Elements | Building Blocks, Properties/Values |
 | Building Blocks Used | BB-1 AND BB-2 AND BB-3 |
 | Deploy Notes | Baseline first; expect FP tuning |
 
 **Example Rule Conditions**
+
+| Rule Test # (Top-Down) | Rule Test |
+| --- | --- |
+| 1 | And when an event matches any of the following building blocks `BB:Sysmon Archive via PowerShell Cmdlets` or `BB:Sysmon Archive via PowerShell Cmdlets` or `BB:Sysmon Archive via Tar Utilities` | 
+| 2 | And Not when the event matches search filter `Username is any of ANONYMOUS LOGON or SYSTEM` |
 
 **Example Rule Response**
 
