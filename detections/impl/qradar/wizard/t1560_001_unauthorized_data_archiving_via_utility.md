@@ -50,7 +50,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | 2 | And when the event QID is one of the following QIDs `7400021` |
 | 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7z.dll or 7za.exe or WinRaR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-p or (space)-p or (space)-hp or (space)-pass` | 
 
-### BB-2: Sysmon Archive via PowerShell Cmdlets
+### BB-2: `Sysmon Archive via PowerShell Cmdlets`
 
 | Field | Value | 
 | --- | --- | 
@@ -108,10 +108,9 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 | Field | Value |
 |---|---|
 | Purpose | Fire when archive behavior occurs |
-| Rule type | Event rule |
-| Building blocks used | BB-1 AND BB-2 AND BB-3 |
-| Response / actions | Create offense; annotate with process, path, user, host (generic) |
-| Deploy notes | Baseline first; expect FP tuning around backup windows |
+| Rule Type | Event rule |
+| Building Blocks Used | BB-1 AND BB-2 AND BB-3 |
+| Deploy Notes | Baseline first; expect FP tuning |
 
 **Example Rule Conditions**
 
