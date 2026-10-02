@@ -48,7 +48,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | --- | --- |
 | 1 | And when the events were detected by one ore more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `7400021` |
-| 3 | And when the event matches search filter `Event ID = 1`, `OriginalFileName contains any of 7z.dll or 7za.exe or WinRaR.exe or rar.exe or tar.exe or makecab.exe or compact.exe or PowerShell.EXE`, `ParentCommandLine contains any of (space)-p or (space)-hp or (space)-pass or Compress-Archive or (space)-a or (space)-cif or (space)czf or (space)-czf` | 
+| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7z.dll or 7za.exe or WinRaR.exe or rar.exe or tar.exe or makecab.exe or compact.exe or PowerShell.EXE`, `CommandLine contains any of (space)-p or (space)-hp or (space)-pass or Compress-Archive or (space)-a or (space)-cif or (space)czf or (space)-czf` | 
 
 ### BB-2: Sysmon Archive via PowerShell Cmdlets
 
@@ -68,7 +68,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | 1 | And when the events were detected by one ore more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `7400021` |
 | 3 | And when the event matches search filter `Event ID = 1`, `OriginalFileName contains any of powershell.exe or pwsh.exe or cmd.exe` | 
-| 4 | And when the event matches this AQL filter query  | 
+| 4 | And when the event matches this AQL filter query ''' ("ParentCommandLine ILIKE '%\Users\Public\%' OR OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "ParentCommandLine" ILIKE '%Compress-Archive%' AND NOT ("| 
 
 ## Core Rule
 
