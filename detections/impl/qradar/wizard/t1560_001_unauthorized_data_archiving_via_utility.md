@@ -2,6 +2,8 @@
 
 **Status:** Experimental (lab)
 
+**Validation:** Lab example — logic reviewed; not production-validated as a universal rule. Adapt and baseline locally.
+
 **SIEM:** IBM QRadar (rule wizard)
 
 **Related Sigma:** `detections/sigma/t1560_001_unauthorized_data_archiving_via_utility.yml`
@@ -39,7 +41,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 
 | Field | Value | 
 | --- | --- | 
-| Purpose | Identify Sysmon-related events associated with archiving using Zip utilities. |
+| Purpose | Identify Sysmon-related events associated with archiving using Zip utilities especially when password/pack-style switches appear. |
 | Rule Type | Building Block |
 | Rule Test Elements | Log Source Type, QID, Properties/Values |
 | Log Source Types | Microsoft Windows Security Event Log |
@@ -120,7 +122,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 | Rule Test # (Top-Down) | Rule Test |
 | --- | --- |
 | 1 | And when an event matches any of the following building blocks `BB:Sysmon Archive via Zip Utilities` or `BB:Sysmon Archive via PowerShell Cmdlets` or `BB:Sysmon Archive via Tar Utilities` | 
-| 2 | And Not when the event matches search filter `Username is any of ANONYMOUS LOGON or SYSTEM` |
+| 2 | And Not when the event matches search filter `Username equals ANONYMOUS LOGON` |
 
 **Example Rule Response**
 
@@ -164,7 +166,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 | # | Check | Actions |
 |---|---|---|
 | 1 | Offense details. | Pull the `Source IP`, `Username`, `Image`, `ProcessID`, and full `CommandLine`. |
-| 2 | What was archived? | From the `CommandLine`, note paths (Documents, Desktop, share drives, or  export folders). |
+| 2 | What was archived? | From the `CommandLine`, note paths (Documents, Desktop, share drives, or export folders). |
 | 3 | Encryption flags? | Look for -p, -hp, or password-style options; if present with odd path/parent, treat as higher risk and escalate. |
 | 4 | Benign or suspicious? | Known backup/script vs unexpected user/host/path; tune if noisy, escalate if suspicious. |
 
