@@ -10,6 +10,8 @@
 
 **Related AQL:** `detections/impl/qradar/aql/t1560_001_unauthorized_data_archiving_via_utility.md`
 
+**Related SPL:** `detections/impl/splunk/spl/t1560_001_unauthorized_data_archiving_via_utility.md`
+
 **ATT&CK ID:** T1560.001 — Archive Collected Data/Archive via Utility
 
 ---
@@ -54,7 +56,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | --- | --- |
 | 1 | And when the events were detected by one or more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `7400021` |
-| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7z.dll or 7za.exe or WinRAR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-a or (space)-p or (space)-hp or (space)-pass` | 
+| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7za.exe or WinRAR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-a or (space)-p or (space)-hp or (space)-pass` | 
 
 ### BB-2: `BB:Sysmon Archive via PowerShell Cmdlets`
 
@@ -111,7 +113,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 
 | Field | Value |
 |---|---|
-| Purpose | Fire when archive behavior occurs |
+| Purpose | Fire when any utility-path BB matches (lab) |
 | Rule Type | Event rule |
 | Rule Test Elements | Building Blocks, Properties/Values |
 | Building Blocks Used | Any of BB-1, BB-2, BB-3 |
@@ -156,7 +158,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 
 | Risk | Why | Action|
 |---|---|---|
-| Missing Events | Silent failure. | Health: ensure Sysmon is installed and Event ID 1 is collected. |
+| Missing Events | Silent failure. | Sysmon via WinCollect + Event ID 1 / QID mapping. |
 | Admin One-Off Packaging | Looks automated if scripted. | BB tuning for recurring; have user exception process ready. |
 | Legitimate Utility Usage | Recurring trusted activity. | BB tuning; create BB:FalsePositive: building block; apply to core rule using And Not multi-part rule test. |
 | Non-Utility Usage Noise | Over-scoped building blocks. | BB tuning using multi-part rule test. |
