@@ -156,3 +156,11 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 | Admin One-Off Packaging | Looks automated if scripted. | BB tuning for recurring; have user exception process ready. |
 | Legitimate Utility Usage | Recurring trusted activity. | BB tuning; create BB:FalsePositive: building block; apply to core rule using And Not multi-part rule test. |
 | Non-Utility Usage Noise | Over-scoped building blocks. | BB tuning using multi-part rule test. |
+
+## Triage (when this fires)
+
+| Triage Stage | Step | Response | Actions |
+|---|---|---|---|
+| Initial Triage & Verification | 1 | Extract Archival Footprints | Open the active QRadar offense.  Extract the target workstation's `Source IP`, `Username`, `Image`, and the complete `CommandLine` text block. |
+| Initial Triage & Verification | 2 | Evaluate Target Assets | Inspect the full string patch inside the `CommandLine` to identify what data the process is compressing (look for arguments pointing to Documents, Desktop, share drives, or database export folders. |
+| Initial Triage & Verification | 3 | Check for Encryption Signatures | Verify if the command string includes password concealment markers (such as -p, -hp, or .zip encryption functions). If encryption flags are present alongside an unauthorized script, escalate the incident status to a true positive compromise.
