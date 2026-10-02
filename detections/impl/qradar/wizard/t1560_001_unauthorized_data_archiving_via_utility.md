@@ -67,8 +67,8 @@ Create these **before** the core rule. Name them so intent is obvious.
 | --- | --- |
 | 1 | And when the events were detected by one ore more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `7400021` |
-| 3 | And when the event matches search filter `Event ID = 1`, `OriginalFileName contains any of powershell.exe or pwsh.exe or cmd.exe` | 
-| 4 | And when the event matches this AQL filter query ''' ("ParentCommandLine ILIKE '%\Users\Public\%' OR OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "ParentCommandLine" ILIKE '%Compress-Archive%' AND NOT ("| 
+| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of powershell.exe or pwsh.exe or cmd.exe` | 
+| 4 | And when the event matches this AQL filter query ''' ("CommandLine" ILIKE '%\Users\Public\%' OR "CommandLine" ILIKE '%\AppData\Local\Temp\%' OR "CommandLine" ILIKE '%C:\Windows\Temp\%' OR "CommandLine" ILIKE '%\ProgramData\%') AND "ParentCommandLine" ILIKE '%Compress-Archive%' ```| 
 
 ## Core Rule
 
