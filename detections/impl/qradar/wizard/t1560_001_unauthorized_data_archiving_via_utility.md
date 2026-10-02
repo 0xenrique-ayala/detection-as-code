@@ -163,6 +163,26 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 
 | Step | Response | Actions |
 |---|---|---|
-| 1 | Extract Archival Footprints | Open the active QRadar offense.  Extract the target workstation's `Source IP`, `Username`, `Image`, and the complete `CommandLine` text block. |
+| 1 | Extract Archival Footprints | Open the active QRadar offense.  Extract the target workstation's `Source IP`, `Username`, `Image`, `ProcessID`, and the complete `CommandLine` text block. |
 | 2 | Evaluate Target Assets | Inspect the full string patch inside the `CommandLine` to identify what data the process is compressing (look for arguments pointing to Documents, Desktop, share drives, or database export folders. |
-| 3 | Check for Encryption Signatures | Verify if the command string includes password concealment markers (such as -p, -hp, or .zip encryption functions). If encryption flags are present alongside an unauthorized script, escalate the incident status to a true positive compromise.
+| 3 | Check for Encryption Signatures | Verify if the command string includes password concealment markers (such as -p, -hp, or .zip encryption functions). If encryption flags are present alongside an unauthorized script, escalate the incident status to a true positive compromise. |
+
+**Immediate Containment**
+
+Containment actions must occur instantly upon validation to stop the adversary from executing an outbound data exfiltration transfer.
+
+| Step | Response | Actions |
+|---|---|---|
+| 1 | Execute Host Isolation | Using available security tools, isolate the machine to block all lateral and outbound internet paths. |
+| 2 | Emergency Identity Lock | Take the user profile string found in the `Username` column.  Open your Identity Provider interface (Active Directory, etc.) and disable the account instantly to invalidate the attacker's active Kerberos or OAuth session credentials across the corporate domain. |
+
+**Eradication & Recovery Workflow**
+
+Once the host network connectivity is severed and the identity profile is locked down, analysts must purge the staging folders and verify fleet hygiene.
+
+| Step | Response | Actions |
+|---|---|---|
+| 1 | Terminate Active Process Streams | Use available security tools with access to the machine to force a process termination command against the specific `Image` file `ProcessID` caught executing the loop. |
+| 2 | Shred Staged Archive Containers | Locate the exact target archive file created by the compression process (as shown in the triage `CommandLine` analysis). Use your security tools to permanently delete and wipe the staging package file off the hard drive disk directory to prevent potential recovery. |
+| 3 | Run Full Endpoint Telemetry Sweeps | Prior to lifting isolation, initiate a full host behavioral memory scan via EDR or available security tools. Review the endpoint timeline 15 minutes before the archiving event to locate the primary malware dropper or remote acdess framework that spawned the utility. |
+| 4 | Remove from Isolation | Once all malicious parent execution files are wiped, persistence registries are cleared, and a clean malware scan is retuned, remove from isolation to return the endpoint to the corporate domain. |
