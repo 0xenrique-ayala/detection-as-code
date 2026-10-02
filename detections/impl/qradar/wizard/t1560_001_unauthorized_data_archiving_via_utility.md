@@ -109,12 +109,36 @@ AND "CommandLine" ILIKE '%\folder\subfolder\%')
 |---|---|
 | Purpose | Fire when archive behavior occurs |
 | Rule type | Event rule |
+| Building blocks used | BB-1 AND BB-2 AND BB-3 |
+| Response / actions | Create offense; annotate with process, path, user, host (generic) |
+| Deploy notes | Baseline first; expect FP tuning around backup windows |
+
+**Example Rule Conditions**
+
+**Example Rule Response**
+
+| Field | Value |
+|---|---|
+| Dispatch New Event | Enabled |
+| Event Name | Unauthorized Automated Data Archiving via Utilities |
 | Severity | 7 |
 | Credibility | 8 | 
 | Relevance | 7 |
 | High-Level Category | Suspicious Activity |
 | Low-Level Category | Suspicious Pattern Detected |
-| ATT&CK Mapping| Tactic: `TA0009 Collection`, Technique: `T1560 Archive Collected Data`, Sub-Technique: `T1560.001 Archive via Utility`, Confidence: `Medium` |
-| Building blocks used | BB-1 AND BB-2 AND BB-3 |
-| Response / actions | Create offense; annotate with process, path, user, host (generic) |
-| Deploy notes | Baseline first; expect FP tuning around backup windows |
+
+**Example Rule Limiter**
+
+| Field | Value |
+|---|---|
+| Response Limiter | Enabled |
+| Values | `1` time per `60` `minutes` per `Source IP` | 
+
+**Example MITRE ATT&CK for Enterprise Mapping**
+
+| Field | Value |
+|---|---|
+| Tactic | TA0009 Collection |
+| Technique | T1560 Archive Collected Data |
+| Sub-Technique | T1560.001 Archive via Utility |
+| Confidence | Medium |
