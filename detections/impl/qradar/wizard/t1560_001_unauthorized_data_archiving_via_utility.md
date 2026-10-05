@@ -24,7 +24,7 @@ Lab framing: logic and naming are **examples** for adaptation. Map fields, paths
 
 ## Telemetry notes
 
-In this lab pattern, Sysmon process-create activity is collected via **WinCollect** and appears in QRadar as log source type **Microsoft Windows Security Event Log**, Event ID **1**, QID **7400021**. Other environments may use a dedicated Sysmon DSM/log source type—map LST/QID/properties to local parsing.
+In this lab pattern, Sysmon process-create activity is collected via **WinCollect** and appears in QRadar as log source type **Microsoft Windows Security Event Log**, Event ID **1**, QID **74000021**. Other environments may use a dedicated Sysmon DSM/log source type—map LST/QID/properties to local parsing.
 
 ## High-Level Design
 
@@ -55,7 +55,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | Rule Test # (Top-Down) | Rule Test |
 | --- | --- |
 | 1 | And when the events were detected by one or more of these log source types `Microsoft Windows Security Event Log` | 
-| 2 | And when the event QID is one of the following QIDs `7400021` |
+| 2 | And when the event QID is one of the following QIDs `74000021` |
 | 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7za.exe or WinRAR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-a or (space)-p or (space)-hp or (space)-pass` | 
 
 ### BB-2: `BB:Sysmon Archive via PowerShell Cmdlets`
@@ -74,7 +74,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | Rule Test # (Top-Down) | Rule Test |
 | --- | --- |
 | 1 | And when the events were detected by one or more of these log source types `Microsoft Windows Security Event Log` | 
-| 2 | And when the event QID is one of the following QIDs `7400021` |
+| 2 | And when the event QID is one of the following QIDs `74000021` |
 | 3 | And when the event matches search filter `Event ID = 1`, `"Image" contains any of powershell.exe or pwsh.exe or cmd.exe` | 
 | 4 | And when the event matches this AQL filter query (see below) |
 
@@ -104,7 +104,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 | Rule Test # (Top-Down) | Rule Test |
 | --- | --- |
 | 1 | And when the events were detected by one or more of these log source types `Microsoft Windows Security Event Log` | 
-| 2 | And when the event QID is one of the following QIDs `7400021` |
+| 2 | And when the event QID is one of the following QIDs `74000021` |
 | 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of tar.exe or tar.dll`, `CommandLine contains any of (space)cjf or (space)-cjf or (space)czf or (space)-czf` | 
 
 ## Core Rule
