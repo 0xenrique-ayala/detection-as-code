@@ -13,15 +13,16 @@ These queries approximate the same behaviors for investigation.
 ```aql
 SELECT sourceip, username, "Image", "CommandLine", DATEFORMAT(starttime, 'yyyy-MM-dd HH:mm:ss') AS time
 FROM events
-WHERE qid = 74000021
+WHERE "devicetype" = 12
+  AND qid = 74000021
   AND "Event ID" = 1
+  NOT "CommandLine" ILIKE '%-iext%'
   AND (
-    "Image" ILIKE '%7za.exe%' OR "Image" ILIKE '%WinRAR.exe%'
-    OR "Image" ILIKE '%rar.exe%' OR "Image" ILIKE '%makecab.exe%' OR "Image" ILIKE '%compact.exe%'
+    "Image" ILIKE '%7z.exe%' OR "Image" ILIKE '%7za.exe%' OR "Image" ILIKE '%7zr.exe%' OR "Image" ILIKE '%WinRAR.exe%'
+    OR "Image" ILIKE '%rar.exe%'
   )
   AND (
-    "CommandLine" ILIKE '% -a %' OR "CommandLine" ILIKE '% -p%'
-    OR "CommandLine" ILIKE '% -hp%' OR "CommandLine" ILIKE '% -pass%'
+    "CommandLine" matches '\sa\s' OR "CommandLine" matches '\s-p\S+\s' OR "CommandLine" matches '\s-hp\S+\s' 
   )
 LAST 24 HOURS
 ```
