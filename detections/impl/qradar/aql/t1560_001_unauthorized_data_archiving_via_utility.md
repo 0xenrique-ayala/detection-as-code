@@ -33,7 +33,7 @@ WHERE devicetype = 12
 AND qid = 74000021
 AND "Event ID" = 1
 AND ("Image" ILIKE '%7z.exe%' OR "Image" ILIKE '%7za.exe%' OR "Image" ILIKE '%7zr.exe%' OR "Image" ILIKE '%rar.exe%')
-AND ("CommandLine" matches '.*\sa\s.*' OR "CommandLine" matches '.*\s-p\S+\s.*' OR "CommandLine" matches '.*\s-hp\S+\s.*')
+AND ("CommandLine" MATCHES '.*\sa\s.*' OR "CommandLine" MATCHES '.*\s-p\S+\s.*' OR "CommandLine" MATCHES '.*\s-hp\S+\s.*')
 AND NOT ("CommandLine" ILIKE '%-iext%')
 LAST 24 HOURS
 ```
