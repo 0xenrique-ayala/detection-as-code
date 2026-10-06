@@ -3,6 +3,7 @@
 **Role:** Hunt / baseline / validate.  
 Building blocks + core rule are built in **Rule Wizard** (see wizard doc).  
 These queries approximate the same behaviors for investigation.
+
 Wizard Doc: `detections/impl/qradar/wizard/t1560_001_unauthorized_data_archiving_via_utility.md`
 
 **Telemetry:** Sysmon process-create via WinCollect → LST Microsoft Windows Security Event Log, Event ID 1, QID 74000021 (lab). Map properties locally.
