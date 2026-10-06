@@ -1,0 +1,70 @@
+title: Unauthorized Data Archiving via Utilities
+id: 7c3e9a2b-4f1d-4a8e-9b2c-1d5e6f7a8b9c
+status: experimental
+description: |
+  Detects process-create activity consistent with archiving/compression utilities
+  that may indicate collection or staging (T1560.001). Three paths:
+  (1) zip/rar-family tools with pack/password-style switches,
+  (2) PowerShell/cmd Compress-Archive targeting common staging-like paths,
+  (3) tar with compress-style flags.
+  Lab/example only — map fields and tune FPs before production.
+  QRadar note: Sysmon via WinCollect may appear as Windows Security Event Log
+  Event ID 1 with a local QID; this Sigma uses generic process_creation.
+author: Enrique Ayala
+date: 2026/10/06
+references:
+  - https://attack.mitre.org/techniques/T1560/001/
+tags:
+  - attack.collection
+  - attack.t1560
+  - attack.t1560.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  # BB-1 ≈ zip / rar utilities + pack/password-style switches
+  bb1_image:
+    Image|endswith:
+      - '\7z.exe'
+      - '\7za.exe'
+      - '\7zr.exe'
+      - '\rar.exe'
+  bb1_cmdline:
+    CommandLine|re:
+      - '.*\sa\s.*'
+      - '.*\s-p\S+\s.*'
+      - '.*\s-hp\S+\s.*'
+
+  # BB-2 ≈ PowerShell / cmd + Compress-Archive + staging-ish paths
+  bb2_image:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\cmd.exe'
+  bb2_compress:
+    CommandLine|contains: 'Compress-Archive'
+  bb2_path:
+    CommandLine|contains:
+      - '\Users\Public\'
+      - '\AppData\Local\Temp\'
+      - 'C:\Windows\Temp\'
+      - '\ProgramData\'
+
+  # BB-3 ≈ tar + cjf / czf style flags
+  bb3_image:
+    Image|endswith:
+      - '\tar.exe'
+  bb3_cmdline:
+    CommandLine|re:
+      - '.*\scjf\s.*'
+      - '.*\s-cjf\s.*'
+      - '.*\sczf\s.*'
+      - '.*\s-czf\s.*'
+
+  condition: (bb1_image and bb1_cmdline) or (bb2_image and bb2_compress and bb2_path) or (bb3_image and bb3_cmdline)
+
+falsepositives:
+  - Legitimate backup, packaging, or software distribution using 7z/rar/tar
+  - Admin or IT scripts using Compress-Archive to temp/Public/ProgramData
+  - Software installers or update mechanisms that compress payloads
+level: medium
