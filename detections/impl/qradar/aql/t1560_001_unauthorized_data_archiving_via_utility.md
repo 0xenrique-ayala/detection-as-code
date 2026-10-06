@@ -1,4 +1,4 @@
-# AQL — T1560.001 unauthorized data archiving via utilities (lab)
+# AQL — T1560.001 Unauthorized Data Archiving via Utilities (lab)
 
 **Role:** Hunt / baseline / validate.  
 Building blocks + core rule are built in **Rule Wizard** (see wizard doc).  
