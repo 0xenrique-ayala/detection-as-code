@@ -56,7 +56,7 @@ Create these **before** the core rule. Name them so intent is obvious.
 | --- | --- |
 | 1 | And when the events were detected by one or more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `74000021` |
-| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7za.exe or WinRAR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine contains any of (space)-a or (space)-p or (space)-hp or (space)-pass` | 
+| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of 7za.exe or WinRAR.exe or rar.exe or makecab.exe or compact.exe`, `CommandLine matches any of expressions \sa\s or \s-p\S+\s or \s-hp\S+\s` | 
 
 ### BB-2: `BB:Sysmon Archive via PowerShell Cmdlets`
 
