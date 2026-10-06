@@ -105,7 +105,7 @@ AND "CommandLine" ILIKE '%Compress-Archive%'
 | --- | --- |
 | 1 | And when the events were detected by one or more of these log source types `Microsoft Windows Security Event Log` | 
 | 2 | And when the event QID is one of the following QIDs `74000021` |
-| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of tar.exe or tar.dll`, `CommandLine contains any of (space)cjf or (space)-cjf or (space)czf or (space)-czf` | 
+| 3 | And when the event matches search filter `Event ID = 1`, `Image contains any of tar.exe`, `CommandLine matches any of expressions \scjf\s or \s-cjf\s or \sczf\s or \s-czf\s` | 
 
 ## Core Rule
 
