@@ -63,6 +63,6 @@ FROM events
 WHERE qid = 7400021
 AND "Event ID" = 1
 AND ("Image" ILIKE '%tar.exe%' OR "Image" ILIKE '%tar.dll%')
-AND ("CommandLine" ILIKE '.*\scjf\s.*' OR "CommandLine" matches '.*\s-cjf\s.*' OR "CommandLine" matches '.*\sczf\s.*' OR "CommandLine" matches '.*\s-czf\s.*')
+AND ("CommandLine" MATCHES '.*\scjf\s.*' OR "CommandLine" MATCHES '.*\s-cjf\s.*' OR "CommandLine" MATCHES '.*\sczf\s.*' OR "CommandLine" MATCHES '.*\s-czf\s.*')
 LAST 24 HOURS
 ```
