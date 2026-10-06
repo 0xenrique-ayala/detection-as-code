@@ -1,7 +1,7 @@
 # AQL — T1560.001 Unauthorized Data Archiving via Utilities (lab)
 
 **Role:** Hunt / baseline / validate.  
-Building blocks + core rule are built in **Rule Wizard** (see wizard doc).  
+Building blocks + core rule are built in **Rule Wizard** (see Wizard Doc).  
 These queries approximate the same behaviors for investigation.
 
 Wizard Doc: `detections/impl/qradar/wizard/t1560_001_unauthorized_data_archiving_via_utility.md`
