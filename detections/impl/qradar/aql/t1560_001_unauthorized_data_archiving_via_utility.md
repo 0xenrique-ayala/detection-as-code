@@ -6,7 +6,10 @@ These queries approximate the same behaviors for investigation.
 
 **Telemetry:** Sysmon process-create via WinCollect → LST Microsoft Windows Security Event Log, Event ID 1, QID 74000021 (lab). Map properties locally.
 
-## AQL tip: spaces around command switches
+**Time range:** Default `LAST 24 HOURS` for safe exploratory use.
+For baselining, widen deliberately (e.g. 7 days) in a lab or off-peak window, and/or tighten filters first.
+
+**AQL tip: spaces around command switches**
 
 `ILIKE` with `%` does **not** treat `\s` as whitespace. For a **space before and after** a switch/token, use **`MATCHES`** (regex):
 
