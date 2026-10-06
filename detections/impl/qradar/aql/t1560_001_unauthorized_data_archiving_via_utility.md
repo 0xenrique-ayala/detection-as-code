@@ -17,6 +17,11 @@ For baselining, widen deliberately (e.g. 7 days) in a lab or off-peak window, an
 "CommandLine" MATCHES '.*\scjf\s.*'
 ```
 
+**Core rule note**
+
+The **core rule** is built in Rule Wizard (BB-1 / BB-2 / BB-3 + exclusions + response + limiter).  
+It is **not** a single AQL rule. Use the three hunts below to validate each path; enable the wizard core for correlation/offense behavior.
+
 ---
 
 ## Hunt ≈ BB-1 (zip / rar utilities + pack/password-style switches)
