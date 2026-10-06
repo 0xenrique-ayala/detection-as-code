@@ -61,7 +61,7 @@ SELECT sourceip, username, "Image", "CommandLine", DATEFORMAT(starttime, 'yyyy-M
 FROM events
 WHERE qid = 74000021
 AND "Event ID" = 1
-AND ("Image" ILIKE '%tar.exe%' OR "Image" ILIKE '%tar.dll%')
+AND ("Image" ILIKE '%tar.exe%')
 AND ("CommandLine" MATCHES '.*\scjf\s.*' OR "CommandLine" MATCHES '.*\s-cjf\s.*' OR "CommandLine" MATCHES '.*\sczf\s.*' OR "CommandLine" MATCHES '.*\s-czf\s.*')
 LAST 24 HOURS
 ```
