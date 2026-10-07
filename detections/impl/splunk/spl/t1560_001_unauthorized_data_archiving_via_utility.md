@@ -37,9 +37,7 @@ Examples below use **Sysmon-like** `Image`, `CommandLine`, `EventCode`. Replace 
 
 ```spl
 index=* sourcetype=*sysmon* EventCode=1
-| where match(Image, "(?i)\\\\(7z|7za|7zr|rar)\\.exe$")
-| where match(CommandLine, "(?i).*\\sa\\s.*")
-    OR match(CommandLine, "(?i).*\\s-p\\S+\\s.*")
-    OR match(CommandLine, "(?i).*\\s-hp\\S+\\s.*")
-| table _time host User Image CommandLine
+Image IN ("*\\7z.exe", "*\\7za.exe", "*\\7zr.exe", "*\\rar.exe")
+| where match(CommandLine, "(?i).*\\sa\\s.*") OR match(CommandLine, "(?i).*\\s-p\\S+\\s.*") OR match(CommandLine, "(?i).*\\s-hp\\S+\\s.*")
+| table _time Image CommandLine
 | sort -_time
