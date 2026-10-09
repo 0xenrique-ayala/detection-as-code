@@ -14,8 +14,8 @@ Statuses: `planned` | `experimental` | `stable`
 
 | Technique | Name | Sigma | Type | Status | Notes |
 |---|---|---|---|---|---|
-| T1046 | Wormlike internal multi-host pattern | `detections/sigma/t1046_wormlike_internal_multi_host.yml` | new | planned | Behavioral discovery / scan-style activity |
-| T1560.001 | Sensitive archive staging | `detections/sigma/t1560_001_sensitive_archive_staging.yml` | new | planned | Collection / staging |
+| T1560.001 | Unauthorized data archiving via utilities | `detections/sigma/t1560_001_unauthorized_data_archiving_via_utility.yml` | new | experimental | Zip/rar + Compress-Archive + tar paths; QRadar wizard/AQL + SPL lab |
+| T1046 | Wormlike internal multi-host pattern | `detections/sigma/t1046_wormlike_internal_multi_host.yml` | new | planned | Behavioral discovery / scan-style; FP-tune candidate |
 | T1123 | Unauthorized audio capture | `detections/sigma/t1123_unauthorized_audio_capture.yml` | new | planned | Optional; publish only if fully generic |
 
 ---
