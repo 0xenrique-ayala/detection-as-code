@@ -41,3 +41,9 @@ Image IN ("*\\7z.exe", "*\\7za.exe", "*\\7zr.exe", "*\\rar.exe")
 | where match(CommandLine, "(?i).*\\sa\\s.*") OR match(CommandLine, "(?i).*\\s-p\\S+\\s.*") OR match(CommandLine, "(?i).*\\s-hp\\S+\\s.*")
 | table _time Image CommandLine
 | sort -_time
+
+---
+
+## Hunt ≈ BB-2 (PowerShell / cmd + Compress-Archive + staging-ish paths)
+
+
