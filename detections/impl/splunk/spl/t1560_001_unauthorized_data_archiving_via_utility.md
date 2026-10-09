@@ -37,6 +37,8 @@ Examples below use **Sysmon-like** `Image`, `CommandLine`, `EventCode`. Replace 
 Space-bounded command switches use `match()` regex with `(?i)`, aligned to AQL `MATCHES`.  
 Default time range: last 24 hours. Map `index` / `sourcetype` / field names to your environment.
 
+---
+
 ## Hunt ≈ BB-1 (zip / rar utilities + pack/password-style switches)
 
 ```spl
