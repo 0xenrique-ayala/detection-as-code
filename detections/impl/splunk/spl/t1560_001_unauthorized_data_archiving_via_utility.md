@@ -26,8 +26,6 @@ Widen deliberately for baselining; full-fleet wildcard command-line searches can
 | Process image | `Image`, `process_name`, `process` |
 | Command line | `CommandLine`, `process_command_line`, `Command_Line` |
 | Process create | `EventCode=1` (Sysmon) or equivalent |
-| User | `User`, `user`, `AccountName` |
-| Host | `host`, `Computer`, `dest` |
 
 Examples below use **Sysmon-like** `Image`, `CommandLine`, `EventCode`. Replace with your CIM/datamodel fields if you use `Endpoint.Processes`.
 
