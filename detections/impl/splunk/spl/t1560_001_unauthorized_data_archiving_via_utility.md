@@ -33,6 +33,10 @@ Examples below use **Sysmon-like** `Image`, `CommandLine`, `EventCode`. Replace 
 
 ---
 
+**Style:** Process names use `IN` + `*` wildcards (common Splunk practice).  
+Space-bounded command switches use `match()` regex with `(?i)`, aligned to AQL `MATCHES`.  
+Default time range: last 24 hours. Map `index` / `sourcetype` / field names to your environment.
+
 ## Hunt ≈ BB-1 (zip / rar utilities + pack/password-style switches)
 
 ```spl
@@ -41,9 +45,41 @@ Image IN ("*\\7z.exe", "*\\7za.exe", "*\\7zr.exe", "*\\rar.exe")
 | where match(CommandLine, "(?i).*\\sa\\s.*") OR match(CommandLine, "(?i).*\\s-p\\S+\\s.*") OR match(CommandLine, "(?i).*\\s-hp\\S+\\s.*")
 | table _time Image CommandLine
 | sort -_time
+```
 
 ---
 
 ## Hunt ≈ BB-2 (PowerShell / cmd + Compress-Archive + staging-ish paths)
+
+```spl
+index=* sourcetype=*sysmon* EventCode=1
+Image IN ("*\\powershell.exe", "*\\pwsh.exe", "*\\cmd.exe")
+CommandLine="*Compress-Archive*"
+(
+  CommandLine="*\\Users\\Public\\*"
+  OR CommandLine="*\\AppData\\Local\\Temp\\*"
+  OR CommandLine="*C:\\Windows\\Temp\\*"
+  OR CommandLine="*\\ProgramData\\*"
+)
+| table _time Image CommandLine
+| sort -_time
+```
+
+---
+
+## Hunt ≈ BB-3 (tar-style)
+
+```spl
+index=* sourcetype=*sysmon* EventCode=1
+Image IN ("*\\tar.exe")
+| where match(CommandLine, "(?i).*\\scjf\\s.*")
+    OR match(CommandLine, "(?i).*\\s-cjf\\s.*")
+    OR match(CommandLine, "(?i).*\\sczf\\s.*")
+    OR match(CommandLine, "(?i).*\\s-czf\\s.*")
+| table _time Image CommandLine
+| sort -_time
+```
+
+---
 
 
